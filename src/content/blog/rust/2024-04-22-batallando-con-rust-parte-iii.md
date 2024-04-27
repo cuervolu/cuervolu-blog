@@ -1,0 +1,79 @@
+---
+title: Batallando Con Rust Parte III
+author: Ángel Cuervo
+pubDatetime: 2024-04-22
+description: En esta tercera parte de la serie de artículos sobre Rust, veremos aspectos más teóricos sobre la memoria
+category: rust
+slug: batallando-con-rust-parte-iii
+draft: false
+tags: ["rust", "programming"]
+---
+
+![Anime girl holding rust book](/assets/Takebe_Saori_on_Web_Assembly_With_Rust-8f70c36b6823036ee259737b6088e2b8.webp)
+
+La última vez que programé en Rust me di cuenta de algo, me faltaba muchaaa teoría. Me puse a investigar un poco y encontré un canal en Youtube completamente sobre Rust, que explica las cosas de una forma que cualquiera pueda entender. Es un canal bastante nuevo y de hecho empezó hace poco, se llama [**Rust, simply**](https://www.youtube.com/@RustSimply). El cuál también tiene un libro completamente gratis en su [página web](https://rust-simply.rs/).
+
+También note que existen otros dos canales: [**Let's Get Rusty**](https://www.youtube.com/@letsgetrusty) y [**Jeremy Chone**](https://www.youtube.com/@JeremyChone).
+
+Lo que me gusta de Rust, simply es explican de una forma tan sencilla que cualquier tema parece simple. En el último video que vi, explicaban cómo funciona la memoria en Rust, y me pareció muy interesante.
+
+**¿Alguna vez te has preguntado como un programa recuerda las cosas?**
+
+La penúltima vez hable sobre los tipos de datos en Rust y como me mareaba con la gran cantidad de ellos. Pero ahora, con la memoria, todo tiene sentido.
+
+Por darte un ejemplo (sacado del video), si tienes un programa que tiene una variable, en este caso llamada `actual`, y le asignas un valor, digamos `blue`.
+
+```rust
+let actual = "blue";
+```
+
+Dependiendo del editor de texto o IDE que uses, puede que hayas notado que aparece un pequeño texto al lado del nombre de la variable, que puede decir algo como `&str`.
+
+![Type annotation](/assets/type-annotation.webp)
+
+Eso significa que la variable `actual` es un string, y el `&` significa que es una referencia a un _string slice_. ¿Qué significa esto? Una referencia es algo que apunta a donde está algún dato real, esto es muy útil cuando quieres decir algo sobre algún dato sin tener que darle el dato específico. Osea que la variable `actual` no tiene el valor `blue` directamente, sino que tiene una dirección de memoria donde se encuentra el valor `blue`.
+
+Probablemente has notado que en Rust existe el tipo `String` y `&str`, y te preguntarás ¿cuál es la diferencia?
+
+Para entenderlo, tenemos que hablar un poco de cómo funciona nuestro programa.
+
+## El Stack
+
+En la mayoría de lenguajes de programación, los programas están hechos de funciones. Cuando ejecutamos nuestro programa, el sistema operativo asigna cierta memoria para que el programa se ejecute en ella, llamada "_the stack_".
+
+Cada vez que ejecutamos una función creamos un nuevo bloque de memoria en el stack que es del tamaño exacto de todo lo que esa función necesita recordar. Así, por ejemplo, si nuestra función tiene tres números, entonces nuestro nuevo bloque en el stack será exactamente del tamaño necesario para almacenar esos tres números. (Adjunto un GIF muy bonito hecho por Rust, simply que explica esto de una forma muy sencilla).
+
+![The Stack](/assets/stack.gif)
+
+Cuando se inicializa el programa, el sistema operativo asigna algo de memoria para el stack, entonces, toda la memoria requerida para almacenar todas las variables en `main` (que en este ejemplo son 4 direcciones) se bloquea. Entonces, mientras `main` se ejecuta, llama a otra función, `f1` que requiere dos direcciones más. `f1` entonces llama a otra función que requiere 3 direcciones de memoria, `f2`. Una vez que `f2` ha terminado, se elimina de la stack, entonces f1 termina, y también se elimina de la stack. Finalmente `main` llega a su fin y nuestro programa se cierra y toda la memoria es liberada.
+
+Pero, ¿qué pasa si queremos obtener el input del usuario y almacenarlo en una variable?
+
+Cualquier cosa que viva dentro de una variable va a el stack, y cualquier cosa en el stack debe tener un tamaño conocido cuando se compila el programa. En Rust, tenemos un nombre específico para esto "Sized". Cosas como números, caracteres, booleanos e incluso tuplas son Sized, pero una cadena de caracteres no lo es, es "Unsized".
+
+Entonces, ¿dónde viven nuestros datos si no es dentro de las variables?
+
+Recordarás que nuestra variable actual tiene el tipo `&str` que es una referencia (&) a un _string slice_. Cuando escribes manualmente una cadena entre comillas dobles `"así"`, se llama "literal de cadena" (_string literal_). Esto se aplica a nuestra variable, así como cada vez que hemos utilizado en un `println!`. Un _string slice_ puede ser cualquier parte de una string almacenada en otro lugar, por lo que pueden ser los caracteres 0 a 3 (b, l, u, e) de nuestro literal de cadena que está almacenado en el ejecutable.
+
+## El Heap
+
+El `input` del usuario es un ejemplo de algo que no puede vivir en el stack, porque no sabemos cuánto espacio necesitamos hasta que el usuario nos lo diga. Para esto, necesitamos una parte de la memoria llamada "_the heap_".
+
+En cualquier momento, mientras se ejecuta el programa, podemos pedir al sistema operativo que nos permita acceder a cierta cantidad de memoria. Todavía necesitamos saber cuánta memoria necesitamos, pero ahora sólo necesitamos saber cuánta memoria en tiempo de ejecución. Esta memoria proviene del heap. En el heap, podemos almacenar datos "Unsized" (así como Sized, que puede ser útil en ciertas circunstancias) y, entonces, como todo sobre la ubicación de esos datos es Sized, podemos almacenarlos en una variable en el stack. `String` no contiene los datos, pero sabe dónde están.
+
+Hay algunas diferencias entre el stack y el heap:
+
+- El Stack es más limitado en tamaño, así que deberías evitar almacenar datos grandes en él (incluso si el tamaño es desconocido en tiempo de compilación).
+- Crear memoria en el heap es más lento que en el stack, porque el sistema operativo necesita encontrar un lugar para almacenar la memoria y este debe devolver la dirección de memoria al programa. Esto no lleva demasiado tiempo, pero hay que tener cuidado con aumentar repetidamente la cantidad que necesitas.
+- Si creas un String de cierto tamaño y luego le pides más memoria (por ejemplo, añadiéndole más datos), en segundo plano Rust le pedirá al sistema operativo un nuevo bloque de memoria más grande, entonces tiene que copiar los datos antiguos en él, antes de añadir nada más al final.
+
+## Conclusión
+
+Entonces:
+
+- El stack es donde viven las variables que tienen un tamaño conocido en tiempo de compilación.
+- El Heap es donde guardas cosas sin importar su tamaño en tiempo de compilación.
+- Puedes referenciar data con `&` y `&mut` para evitar copiar datos.
+- Rust se encarga de liberar la memoria que ya no necesitas.
+
+Espero que te haya gustado este artículo, y si quieres saber más sobre Rust, simply, te recomiendo que veas sus videos, son muy buenos y explican las cosas de una forma muy sencilla.

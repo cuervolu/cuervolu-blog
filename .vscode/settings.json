@@ -1,0 +1,55 @@
+{
+    "frontMatter.taxonomy.contentTypes": [
+        {
+            "name": "default",
+            "pageBundle": false,
+            "fields": [
+                {
+                    "title": "author",
+                    "name": "author",
+                    "type": "string"
+                },
+                {
+                    "title": "pubDatetime",
+                    "name": "pubDatetime",
+                    "type": "datetime"
+                },
+                {
+                    "title": "modDatetime",
+                    "name": "modDatetime",
+                    "type": "datetime"
+                },
+                {
+                    "title": "title",
+                    "name": "title",
+                    "type": "string"
+                },
+                {
+                    "title": "featured",
+                    "name": "featured",
+                    "type": "boolean"
+                },
+                {
+                    "title": "draft",
+                    "name": "draft",
+                    "type": "draft"
+                },
+                {
+                    "title": "tags",
+                    "name": "tags",
+                    "type": "tags"
+                },
+                {
+                    "title": "canonicalURL",
+                    "name": "canonicalURL",
+                    "type": "string"
+                },
+                {
+                    "title": "description",
+                    "name": "description",
+                    "type": "string"
+                }
+            ]
+        }
+    ]
+}
