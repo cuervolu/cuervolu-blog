@@ -133,3 +133,18 @@
     @apply outline-2 outline-offset-1 outline-skin-fill focus-visible:no-underline focus-visible:outline-dashed;
   }
 }
+
+p > code {
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-weight: 700 !important;
+}
+
+article pre {
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-weight: 700 !important;
+}
+
+pre > code {
+  font-family: 'JetBrains Mono Variable', monospace;
+  font-weight: 700 !important;
+}
