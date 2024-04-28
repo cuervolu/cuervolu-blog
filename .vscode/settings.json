@@ -53,6 +53,8 @@
         }
     ],
     "conventionalCommits.scopes": [
-        "header"
+        "header",
+        "404",
+        "ui"
     ]
 }

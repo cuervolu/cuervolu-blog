@@ -9,6 +9,7 @@ import Card from "@components/Card";
 import Socials from "@components/Socials.astro";
 import getSortedPosts from "@utils/getSortedPosts";
 import { SOCIALS } from "@config";
+import { Image } from "astro:assets";
 
 const posts = await getCollection("blog");
 
@@ -45,7 +46,7 @@ const socialCount = SOCIALS.filter(social => social.active).length;
         Soy un programador chileno con una debilidad por aprender
         constantemente, especialmente en el area del backend. Me encantan los
         videojuegos, el cine, el anime, entre otras cosas. También suelo tomar
-        fotografías en mi tiempo libre.<br class="hidden md:block" /> En este blog
+        fotografías en mi tiempo libre.<br class="md:block hidden" /> En este blog
         comparto mis experiencias y aprendizajes en el mundo de la programación,
         además de otras cosas raras de las que suelo hablar.
       </p>
@@ -58,6 +59,14 @@ const socialCount = SOCIALS.filter(social => social.active).length;
           Acerca de
         </LinkButton> para saber más sobre mí.
       </p>
+
+      <Image
+        src="/cuervolu.webp"
+        width={800}
+        height={400}
+        alt="Cuervolu OC by Iriata18"
+        class="h-48 w-full rounded-lg object-cover shadow-lg sm:h-96"
+      />
       {
         // only display if at least one social link is enabled
         socialCount > 0 && (
