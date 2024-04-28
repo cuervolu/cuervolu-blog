@@ -124,8 +124,8 @@ Lo chistoso, es que encontré un nuevo odio a un profesor que es altamente pesad
 
 La verdad es que fueron cosas pequeñas, pero si. Aprendí a programar en un nivel mucho más alto, conocí amigos fieles, aprendí a trabajar en equipo, aprendí a ser más tolerante, más paciente, más humilde, más comprensivo, etc. Aprendí muchas cosas, pero no sé si valió la pena. Todo esto lo pude haber aprendido sin tanto desarrollo de personaje. O no sé, ¿ustedes que opinan?
 
-Si hubiera una canción que represente mi vida en la universidad, sería esta, que curiosamente la conocí debido a una amiga que me ha ayudado mucho y conocí en la universidad.
+Si hubiera una canción que represente mi vida en la universidad, sería [esta](https://youtu.be/-4vQr4kbND8?list=RDaOfQLfChIPs), que curiosamente la conocí debido a una amiga que me ha ayudado mucho y conocí en la universidad.
 
-<video controls plays-inline="true" class="border border-skin-line">
-  <source src="https://youtu.be/-4vQr4kbND8?list=RDaOfQLfChIPs" type="video/mp4">
-</video>
+## Conclusión
+
+Pero bueno, ya no queda mucho. Solo me queda un semestre y ya estaré libre. No sé si me siento feliz o triste. En cierto modo, da miedo seguir adelante, pero también da miedo quedarse atrás. No sé qué pasará, pero espero que sea algo bueno.
