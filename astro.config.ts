@@ -5,8 +5,9 @@ import remarkToc from "remark-toc";
 import remarkCollapse from "remark-collapse";
 import sitemap from "@astrojs/sitemap";
 import { SITE } from "./src/config";
-
 import icon from "astro-icon";
+
+import mdx from "@astrojs/mdx";
 
 // https://astro.build/config
 export default defineConfig({
@@ -18,6 +19,7 @@ export default defineConfig({
     react(),
     sitemap(),
     icon(),
+    mdx(),
   ],
   markdown: {
     remarkPlugins: [
