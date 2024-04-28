@@ -3,11 +3,11 @@ title: Hello World! Bievenidos al primer post :D
 author: Ángel Cuervo
 description: ¡Bienvenidos a este nuevo blog!
 pubDatetime: 2024-04-12T17:55:28.271Z
+modDatetime: 2024-04-28T02:06:58.029Z
 draft: false
 featured: false
-preview: public/images/cuervolu.png
-tags: ["info"]
-category: info
+tags:
+  - info
 slug: hello-world
 ---
 
@@ -54,11 +54,11 @@ Mis metas a futuro son varias, pero hablaré específicamente de este sitio.
 ### To-Do
 
 - [x] Publicar el sitio
-- [ ] Comprar un dominio y probablemente subirlo a Cloudflare
+- [x] Comprar un dominio y probablemente subirlo a Cloudflare
 - [ ] Subir mis proyectos
 - [ ] Crear contenido frecuentemente
 - [ ] Mejorar el diseño y añadir más funciones (como comentarios, por ejemplo)
-- [ ] Promocionar a mis compitas artistas y sus trabajos
+- [x] Promocionar a mis compitas artistas y sus trabajos
 
 Y eso más que nada.
 
