@@ -8,14 +8,7 @@ tags: ["Duoc"]
 slug: libreria-imagina
 ---
 
-import { Image } from "astro:assets";
-
-<Image
-  src="/assets/logo_libreria_imagina.png"
-  alt="El Modelo Relacional"
-  width="800"
-  height="600"
-/>
+![Librería Imagina](@assets/images/logo_libreria_imagina.png)
 
 En el quinto semestre de mi carrera, tuve la asignatura de Integración de Plataformas, que trataba sobre crear un sistema que pudiera integrarse con otros sitemas, como una API Rest, SOAP, etc. En este caso, se nos entregó una problématica sobre una empresa llamada **Librería Imagina**.
 
@@ -40,12 +33,7 @@ Para este proyecto, se nos pidió realizar un sistema que permitiera a la empres
 
 En la primera entrega debíamos entregar toda la documentación necesaria para el desarrollo del proyecto, como el **Modelo Relacional**, los **Mock Ups**, el **Diagrama de Casos de Uso**, Secuencia y Despliegue, entre otros. Además de una Carta Gantt con las tareas a realizar y el tiempo que tomaría cada una. Todo esto debía explicarse en un documento llamado "Plan de Integración".
 
-<Image
-  src="/assets/RelationalLibreria.png"
-  alt="El Modelo Relacional"
-  width="800"
-  height="600"
-/>
+![Modelo Relacional](@assets/images/RelationalLibreria.png)
 
 Para la segunda entrega, ya se nos pedía codificar el sistema, el cuál incluía:
 

@@ -119,7 +119,7 @@ En Python utilizaba un bucle `while` para que el usuario pudiera adivinar la pal
 ```
 
 Mientras intentaba implementar esta cagada en Rust, me encontré con un error un tanto curioso.
-![Error en Bucle](/assets/Peek%2019-04-2024%2021-33.gif)
+![Error en Bucle](@assets/images/while_loop_fail.gif)
 
 ¿Qué carajos paso? ¿Por qué la terminal se bugeo de ese modo?
 

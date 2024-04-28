@@ -9,7 +9,7 @@ category: personal
 slug: como-empezar-en-la-programacion
 ---
 
-![Como Empezar en La Programación](/assets/wallhaven-83q7ek.webp)
+![Como Empezar en La Programación](@assets/images/wallhaven-83q7ek.webp)
 
 ## Table of contents
 

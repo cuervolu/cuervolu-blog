@@ -9,7 +9,7 @@ draft: false
 tags: ["rust", "programming"]
 ---
 
-![Anime girl holding rust book](/assets/Takebe_Saori_on_Web_Assembly_With_Rust-8f70c36b6823036ee259737b6088e2b8.webp)
+![Anime girl holding rust book](@assets/images/Takebe_Saori_on_Web_Assembly_With_Rust-8f70c36b6823036ee259737b6088e2b8.webp)
 
 La última vez que programé en Rust me di cuenta de algo, me faltaba muchaaa teoría. Me puse a investigar un poco y encontré un canal en Youtube completamente sobre Rust, que explica las cosas de una forma que cualquiera pueda entender. Es un canal bastante nuevo y de hecho empezó hace poco, se llama [**Rust, simply**](https://www.youtube.com/@RustSimply). El cuál también tiene un libro completamente gratis en su [página web](https://rust-simply.rs/).
 
@@ -31,7 +31,7 @@ let actual = "blue";
 
 Dependiendo del editor de texto o IDE que uses, puede que hayas notado que aparece un pequeño texto al lado del nombre de la variable, que puede decir algo como `&str`.
 
-![Type annotation](/assets/type-annotation.webp)
+![Type annotation](@assets/images/type-annotation.webp)
 
 Eso significa que la variable `actual` es un string, y el `&` significa que es una referencia a un _string slice_. ¿Qué significa esto? Una referencia es algo que apunta a donde está algún dato real, esto es muy útil cuando quieres decir algo sobre algún dato sin tener que darle el dato específico. Osea que la variable `actual` no tiene el valor `blue` directamente, sino que tiene una dirección de memoria donde se encuentra el valor `blue`.
 
@@ -45,7 +45,7 @@ En la mayoría de lenguajes de programación, los programas están hechos de fun
 
 Cada vez que ejecutamos una función creamos un nuevo bloque de memoria en el stack que es del tamaño exacto de todo lo que esa función necesita recordar. Así, por ejemplo, si nuestra función tiene tres números, entonces nuestro nuevo bloque en el stack será exactamente del tamaño necesario para almacenar esos tres números. (Adjunto un GIF muy bonito hecho por Rust, simply que explica esto de una forma muy sencilla).
 
-![The Stack](/assets/stack.gif)
+![The Stack](@assets/images/stack.gif)
 
 Cuando se inicializa el programa, el sistema operativo asigna algo de memoria para el stack, entonces, toda la memoria requerida para almacenar todas las variables en `main` (que en este ejemplo son 4 direcciones) se bloquea. Entonces, mientras `main` se ejecuta, llama a otra función, `f1` que requiere dos direcciones más. `f1` entonces llama a otra función que requiere 3 direcciones de memoria, `f2`. Una vez que `f2` ha terminado, se elimina de la stack, entonces f1 termina, y también se elimina de la stack. Finalmente `main` llega a su fin y nuestro programa se cierra y toda la memoria es liberada.
 

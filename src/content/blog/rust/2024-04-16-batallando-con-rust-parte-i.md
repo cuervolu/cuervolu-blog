@@ -8,7 +8,7 @@ tags: ["rust", "programming"]
 slug: batallando-con-rust-parte-i
 ---
 
-![Mascota de Rust](/assets/cuddlyferris.svg)
+![Mascota de Rust](@assets/images/cuddlyferris.svg)
 
 ## Introducción
 
@@ -34,7 +34,7 @@ A simple vista, Rust pareciera ser mucho más amigable que C++ (en mi opinión c
 
 ## ¿Qué es Rust?
 
-![Rust meme](/assets/lai6xuz2n6ia1.png)
+![Rust meme](@assets/images/lai6xuz2n6ia1.png)
 
 Según este post de [MIT Technology Review](https://www.technologyreview.es/s/15106/breve-historia-de-rust-el-lenguaje-de-programacion-que-ha-destronado-c), Rust fue creado por Graydon Hoare, un programador informático de 29 años que trabajaba para Mozilla. En el año 2006, al volver a su apartamento de Vancouver, descubrió que el ascensor no funcionaba. El software de los ascensores suele estar escrito en lenguajes como C++ o C. **El problema es que esos lenguajes también facilitan la introducción accidental de fallos de memoria**, es decir, errores que provocan bloqueos.
 
@@ -159,7 +159,7 @@ The value of x is: 6
 ### Tipos de datos
 
 Esto es curioso, en Rust hay un montón de tipos de datos, tales que hasta se hacen memes acerca de ello:
-![Rust Types](/assets/jsh156txovp91.webp)
+![Rust Types](@assets/images/jsh156txovp91.webp)
 Ten en cuenta que Rust es un lenguaje _estáticamente tipado_, lo que significa que debe conocer los tipos de todas las variables en tiempo de compilación. El compilador normalmente puede inferir qué tipo queremos usar basándose en el valor y en cómo lo usamos.
 
 Los tipos de datos que hay son:
