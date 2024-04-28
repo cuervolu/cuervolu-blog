@@ -13,6 +13,8 @@ tags: ["rust", "programming"]
 
 La última vez que programé en Rust me di cuenta de algo, me faltaba muchaaa teoría. Me puse a investigar un poco y encontré un canal en Youtube completamente sobre Rust, que explica las cosas de una forma que cualquiera pueda entender. Es un canal bastante nuevo y de hecho empezó hace poco, se llama [**Rust, simply**](https://www.youtube.com/@RustSimply). El cuál también tiene un libro completamente gratis en su [página web](https://rust-simply.rs/).
 
+## Table of contents
+
 También note que existen otros dos canales: [**Let's Get Rusty**](https://www.youtube.com/@letsgetrusty) y [**Jeremy Chone**](https://www.youtube.com/@JeremyChone).
 
 Lo que me gusta de Rust, simply es explican de una forma tan sencilla que cualquier tema parece simple. En el último video que vi, explicaban cómo funciona la memoria en Rust, y me pareció muy interesante.

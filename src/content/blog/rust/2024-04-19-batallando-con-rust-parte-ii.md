@@ -13,6 +13,8 @@ Hace unos días me propuse aprender Rust, un lenguaje de programación que ha es
 
 Decidí recrear un programa que hice en Python llamado "Ahorcado" o "Hangman" en inglés. El programa es bastante simple, el usuario tiene que adivinar una palabra y tiene un número limitado de intentos. Si el usuario adivina la palabra antes de que se le acaben los intentos, gana. Si no, pierde y muere (en el juego, claro).
 
+## Table of contents
+
 ## Creando el proyecto
 
 En mi caso, como tengo licencia de estudiante en JetBrains, utilizó Rust Rover, un IDE de Rust que me permite programar en Rust de manera más sencilla. Para crear un nuevo proyecto, simplemente hago clic en "New Project" y selecciono "Rust" en la lista de lenguajes. El nombre del proyecto será "hangman".

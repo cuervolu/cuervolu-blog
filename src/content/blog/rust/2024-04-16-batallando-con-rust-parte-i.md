@@ -30,6 +30,8 @@ Aún así, una de mis motivaciones principales para aprender un lenguaje de nive
 
 A simple vista, Rust pareciera ser mucho más amigable que C++ (en mi opinión cualquier cosa se ve mucho más amigable que ese lenguaje), así que decidí empezar con el lenguaje del cangrejo para poder darme una idea de con que me enfrentó.
 
+## Table of contents
+
 ## ¿Qué es Rust?
 
 ![Rust meme](/assets/lai6xuz2n6ia1.png)

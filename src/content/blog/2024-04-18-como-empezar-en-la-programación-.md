@@ -11,6 +11,8 @@ slug: como-empezar-en-la-programacion
 
 ![Como Empezar en La Programación](/assets/wallhaven-83q7ek.webp)
 
+## Table of contents
+
 ## Cómo empezar en la programación
 
 Una querida amiga me sugirió que hablara sobre este tema, sobre cómo empezar en la informática y en su infinidad de áreas. La verdad aún estoy muy lejos de ser un experto en el tema, especialmente considerando lo desorganizado que soy, aún así, si pudiera darle consejos a mi yo del pasado, habrían unas cosas que si o si le diría.

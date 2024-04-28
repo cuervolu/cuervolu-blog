@@ -19,6 +19,8 @@ El sitio lo cree con [Astro](https://astro.build/) y [TailwindCSS](https://tailw
 
 Honestamente el trabajo de diseño y frontend no es lo mío, además de que no me gusta demasiado, por ende no esperen mucho de este sitio en cuanto a UI. También soy super indeciso, así que pude que el sitio cambie bruscamente varías veces hasta que me de por conforme.
 
+## Table of contents
+
 ## ¿Qué esperar de este blog?
 
 Más que nada, este blog es para mi, para escribir sobre cosas que me interesan, o que me gustaría compartir. No tengo idea de que tan seguido voy a escribir, pero espero que sea más seguido que nunca. Si no, estaré gastando recursos y toda esta chingadera fue para nada.
