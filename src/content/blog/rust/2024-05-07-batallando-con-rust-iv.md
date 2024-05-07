@@ -1,0 +1,211 @@
+---
+title: Batallando con Rust IV
+author: Ángel Cuervo
+description: Cuarta entrega de la serie de artículos sobre Rust.
+pubDatetime: 2024-05-07T17:28:50.355Z
+draft: false
+tags:
+  - rust
+  - programming
+  - cli
+  - terminal
+slug: batallando-con-rust-iv
+modDatetime: null
+featured: false
+type: blog
+---
+
+![Frieren holding the rust programming language book](@assets/images/Frieren_Holding_The_Rust_Programming_Language.webp)
+
+A pasado un tiempo desde mi último post, la verdad he estado muy ocupado con las clases que estoy tomando, pero... ¡la mala hierba nunca muere! Así que aquí estoy de nuevo y que mejor que escribir sobre uno de los lenguajes que más me ha llamado la atención, Rust.
+
+En esta ocasión, he de contar que he estado estudiando, pero sin escribir en el blog. He encontrado distintos recursos en línea sobre como aprender este lenguaje, como [The Rust Book (Abridged)](https://jasonwalton.ca/rust-book-abridged/), [YAAR! (Yet Another Rust Resource)](https://yet-another-rust-resource.pages.dev/introduction) y un curso bastante peculiar que Google creo llamado [Comprehensive Rust 🦀](https://google.github.io/comprehensive-rust/).
+
+También me he dado cuenta que aunque sepa mucha teoría, cuando toca escribir código me quedo en blanco. Así que he decidido hacer un pequeño proyecto para practicar lo que he aprendido. En este caso será un simple CLI, que se encargue de llamar una API y mostrar los resultados en la terminal.
+
+## Table of Contents
+
+## La idea
+
+Me tome mi tiempo en buscar una API que me llama la atención, busque en dos sitios distintos: [Public Apis](https://publicapis.io/) y [Public Apis](https://publicapis.dev/)... espera, ¿se llaman igual? Bueno, uno termina en .io y el otro en .dev.
+
+No quería usar las típicas PokeApi o Rick and Morty Api, lo difícil es que, aunque algunas eran muy interesantes, el tipo de información que regresaban no sería muy útil en la terminal, como imágenes o archivos. Yo SUPONGO que si es posible mostrar tales cosas en la terminal pero ya es un tema algo avanzado para mí.
+
+Llegue incluso a encontrar una API llamada [Nekos.Pro](https://documentation.nekos.pro/), donde en su documentación indican que _...se creó originalmente con la intención de servir material hentai respetuoso con el ToS de Discord, entre otras plataformas._ Lo cual me pareció muy gracioso, pero no es el tipo de información que quiero mostrar en la terminal.
+
+Al final, decepcionado por no encontrar algo que me llamara la atención, decidí usar [Evil Insult Generator](https://evilinsult.com/api/#insults), una API que regresa insultos. No es la gran cosa, pero al menos es algo que puedo mostrar en la terminal y darle un cariñoso insulto al usuario.
+
+La API acepta dos Query Parameters, `lang` y `type`. `lang` es el idioma en el que se regresará el insulto y `type` es el tipo de respuesta, ya sea JSON, XML o Plain Text. En mi caso, solo me interesa el JSON.
+
+Hice una pequeña prueba de su API con el idioma en español y me devolvió esto:
+
+```json
+{
+  "number": "323",
+  "language": "es",
+  "insult": "Soplagaitas",
+  "created": "2024-05-06 05:27:49",
+  "shown": "1442",
+  "createdby": "",
+  "active": "1",
+  "comment": "Bagpiper"
+}
+```
+
+¿Soplagaitas? ¿Ese es el mejor insulto que tienen? A la mierda, no me importa, lo usaré de todas formas.
+
+El CLI se llamará 'evg', por Evil Insult Generator. Y solo tendrá una opción, `--lang` para seleccionar el idioma del insulto. Por defecto, el idioma será inglés.
+
+Dudo necesitar más de un archivo para este proyecto, así que no me preocuparé por la estructura del proyecto. Pero si veo que crece, lo dividiré en distintos archivos.
+
+## Manos a la obra
+
+Primero, necesito instalar las dependencias necesarias para este proyecto. En este caso, usaré `reqwest` para hacer las peticiones a la API y `serde_json` para mapear la respuesta. `clap` para manejar los argumentos de la línea de comandos, `anyhow` para el manejo de errores y `colored` para darle un poco de color a la terminal y hacerla más bonita.
+
+```toml
+[dependencies]
+tokio = { version = "1.15", features = ["full"] }
+reqwest = { version = "0.12.4", features = ["json"] }
+clap = { version = "4.5.4", features = ["derive"] }
+colored = "2.1.0"
+anyhow = "1.0.83"
+```
+
+Luego, use [QuickType](https://app.quicktype.io/) para generar los structs necesarios para mapear la respuesta de la API.
+
+```rust
+use serde::{Deserialize, Serialize};
+
+#[derive(Clone, Serialize, Deserialize)]
+pub struct ApiResponse {
+    number: String,
+    language: String,
+    insult: String,
+    created: String,
+    shown: String,
+    createdby: String,
+    active: String,
+    comment: String,
+}
+
+```
+
+Además, cree el struct de los argumentos de la línea de comandos.
+
+```rust
+#[derive(Parser, Debug)]
+#[command(
+    version, about = "Una cariñosa aplicación que te dará ánimos cada día", long_about = None, author = "Cuervolu"
+)]
+struct Args {
+    /// Language of the insult
+    #[arg(short, long)]
+    lang: String,
+
+    /// Print the information about the insult
+    #[arg(short, long)]
+    verbose: Option<bool>,
+}
+```
+
+Clap desde el momento que es iniciado genera un bonito mensaje de ayuda, así que no me preocuparé por eso.
+
+```shell
+Una cariñosa aplicación que te dará ánimos cada día
+
+Usage: evg [OPTIONS] --lang <LANG>
+
+Options:
+  -l, --lang <LANG>        Language of the insult
+  -v, --verbose <VERBOSE>  Print the information about the insult [possible values: true, false]
+  -h, --help               Print help
+  -V, --version            Print version
+```
+
+Ahora, solo me falta hacer la petición a la API con los argumentos dados por el usuario, la idea es que el lenguaje sea obligatorio y el verbose sea opcional, este último mostrará más información sobre el insulto.
+
+```rust
+use anyhow::{Context, Result};
+use clap::Parser;
+
+async fn get_request(lang: &str) -> Result<ApiResponse> {
+    let url = format!("https://evilinsult.com/generate_insult.php?lang={}&type=json", lang);
+    let response = reqwest::get(&url)
+        .await
+        .with_context(|| format!("Failed to get insult for language {}", lang))?
+        .json::<ApiResponse>()
+        .await
+        .with_context(|| "Failed to parse JSON response")?;
+    Ok(response)
+}
+```
+
+Y finalmente, solo me falta imprimir el insulto en la terminal.
+
+```rust
+use colored::Colorize;
+
+
+fn print_insult(response: ApiResponse, verbose: Option<bool>) -> Result<()> {
+    println!("{}", response.insult.red());
+
+    if let Some(true) = verbose {
+        println!("Language: {}", response.language);
+        println!("Created by: {}", response.createdby.green());
+        println!("Created: {}", response.created);
+        println!("Shown: {}", response.shown);
+        println!("Active: {}", response.active);
+        println!("Comment: {}", response.comment);
+    }
+
+    Ok(())
+}
+```
+
+Los errores los manejaré con `anyhow`, aún no sé cómo hacerlo de la mejor manera, pero por ahora me basta con mostrar el mensaje de error.
+
+Finalmente, solo me falta juntar todo en la función `main`.
+
+```rust
+#[tokio::main]
+async fn main() -> Result<()> {
+    let args = Args::parse();
+
+    let response = get_request(&args.lang).await?;
+    print_insult(response, args.verbose)?;
+    Ok(())
+}
+```
+
+Y listo, ya tengo mi CLI que me insulta cada vez que lo ejecuto para darme ánimos. Vamos a probarlo.
+
+```shell
+cargo run -- -l es
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running `target/debug/evg -l es`
+maricon
+```
+
+¡Pero que bonito! Ahora, cada vez que me sienta mal, solo tengo que ejecutar mi CLI y me sentiré mejor. Probemos el verbose.
+
+```shell
+cargo run -- -l es -v true
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.05s
+     Running `target/debug/evg -l es -v true`
+Capullo
+Language: es
+Created by: thespanishteam
+Created: 2024-05-07 05:51:34
+Shown: 850
+Active: 1
+Comment: Idiot, moron, twit
+```
+
+Si quieren verlo en acción, aquí les dejo un GIF que grabé con [VHS de charmbracelet](https://github.com/charmbracelet/vhs).
+![The best CLI Application](https://vhs.charm.sh/vhs-5mbMtPw6h6UG90LoteTd9K.gif)
+
+## Conclusión
+
+Con Rust es hasta divertido hacer CLIs, aunque aún no me siento listo para hacer algo más complejo. Pero, poco a poco, se llega lejos. En el próximo post, espero poder hacer algo más interesante.
+
+¡Hasta la próxima!

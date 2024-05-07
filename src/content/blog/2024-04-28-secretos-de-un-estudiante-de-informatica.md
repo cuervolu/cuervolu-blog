@@ -9,6 +9,7 @@ tags:
   - personal
 description: Un pequeño desahogo de un estudiante de informática.
 slug: secretos-de-estudiante-de-informatica
+type: blog
 ---
 
 ![Can't stop crying over C++](@assets/images/ExlKcKxWYAM3eoW.webp)

@@ -13,15 +13,12 @@
     {
       "name": "default",
       "pageBundle": false,
-      "previewPath": "'blog'",
-      "filePrefix": null,
-      "clearEmpty": true,
+      "previewPath": null,
       "fields": [
         {
           "title": "Title",
           "name": "title",
-          "type": "string",
-          "single": true
+          "type": "string"
         },
         {
           "title": "Description",
@@ -30,20 +27,89 @@
         },
         {
           "title": "Publishing date",
-          "name": "pubDate",
+          "name": "date",
           "type": "datetime",
           "default": "{{now}}",
           "isPublishDate": true
         },
         {
           "title": "Content preview",
-          "name": "heroImage",
-          "type": "image",
-          "isPreviewImage": true
+          "name": "preview",
+          "type": "image"
+        },
+        {
+          "title": "Is in draft",
+          "name": "draft",
+          "type": "draft"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Categories",
+          "name": "categories",
+          "type": "categories"
+        }
+      ]
+    },
+    {
+      "name": "blog",
+      "pageBundle": false,
+      "fields": [
+        {
+          "title": "Autor",
+          "name": "author",
+          "type": "string"
+        },
+        {
+          "title": "Fecha de Publicación",
+          "name": "pubDatetime",
+          "type": "datetime",
+          "isPublishDate": true
+        },
+        {
+          "title": "modDatetime",
+          "name": "modDatetime",
+          "type": "datetime"
+        },
+        {
+          "title": "Título",
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "title": "Favoritos",
+          "name": "featured",
+          "type": "boolean"
+        },
+        {
+          "title": "Boceto",
+          "name": "draft",
+          "type": "draft",
+          "default": "true"
+        },
+        {
+          "title": "Tags",
+          "name": "tags",
+          "type": "tags"
+        },
+        {
+          "title": "Descripción",
+          "name": "description",
+          "type": "string"
+        },
+        {
+          "title": "type",
+          "name": "type",
+          "type": "string",
+          "default": "post"
         }
       ]
     }
   ],
   "frontMatter.website.host": "https://cuervolu.dev/",
-  "frontMatter.framework.startCommand": "yarn run dev"
+  "frontMatter.framework.startCommand": "yarn run dev",
+  "frontMatter.content.supportedFileTypes": [ "md", "markdown", "mdx", "mdoc" ]
 }
