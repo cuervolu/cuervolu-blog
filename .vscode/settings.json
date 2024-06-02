@@ -3,7 +3,8 @@
         "header",
         "404",
         "ui",
-        "content"
+        "content",
+        "deps"
     ],
     "cSpell.words": [
         "Morty"

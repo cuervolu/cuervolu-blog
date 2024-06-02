@@ -15,13 +15,15 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@astrojs/check": "^0.5.10",
-    "@astrojs/mdx": "^2.3.1",
-    "@astrojs/rss": "4.0.5",
+    "@astrojs/check": "0.7.0",
+    "@astrojs/mdx": "3.0.1",
+    "@astrojs/rss": "4.0.6",
+    "@fontsource-variable/inter": "^5.0.18",
     "@fontsource-variable/jetbrains-mono": "^5.0.21",
+    "@fontsource/geist-mono": "^5.0.3",
     "@fontsource/poppins": "^5.0.14",
     "@resvg/resvg-js": "^2.6.2",
-    "astro": "4.7.0",
+    "astro": "4.9.2",
     "astro-icon": "^1.1.0",
     "fuse.js": "^7.0.0",
     "github-slugger": "^2.0.0",
@@ -32,8 +34,8 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@astrojs/react": "3.3.1",
-    "@astrojs/sitemap": "3.1.4",
+    "@astrojs/react": "3.4.0",
+    "@astrojs/sitemap": "3.1.5",
     "@astrojs/tailwind": "^5.1.0",
     "@divriots/jampack": "^0.23.4",
     "@iconify-json/mdi": "^1.1.66",
@@ -64,5 +66,5 @@
       "prettier --write --plugin=prettier-plugin-astro"
     ]
   },
-  "packageManager": "yarn@4.1.1"
+  "packageManager": "pnpm@9.1.4+sha512.9df9cf27c91715646c7d675d1c9c8e41f6fce88246f1318c1aa6a1ed1aeb3c4f032fcdf4ba63cc69c4fe6d634279176b5358727d8f2cc1e65b65f43ce2f8bfb0"
 }
