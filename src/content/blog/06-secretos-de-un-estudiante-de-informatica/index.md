@@ -3,6 +3,7 @@ title: "Secretos de un Estudiante de Informática"
 description: "Un pequeño desahogo de un estudiante de informática."
 date: "2024-04-28"
 draft: true
+cover: "@assets/ExlKcKxWYAM3eoW.webp"
 ---
 
 ![Can't stop crying over C++](@assets/ExlKcKxWYAM3eoW.webp)

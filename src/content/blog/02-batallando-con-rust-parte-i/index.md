@@ -2,6 +2,7 @@
 title: "Batallando con Rust: Parte I"
 description: "Iniciando mi viaje con Rust, desde los primeros pasos hasta la maestría en este emocionante lenguaje de programación."
 date: "2024-04-17"
+cover: "./cuddlyferris.png"
 ---
 
 ---

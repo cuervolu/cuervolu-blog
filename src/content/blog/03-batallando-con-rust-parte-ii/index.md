@@ -2,6 +2,7 @@
 title: "Batallando con Rust: Parte II"
 description: "Implementando un juego de ahorcado en Rust"
 date: "2024-04-20"
+cover: "./rustdocs.png"
 ---
 
 ---

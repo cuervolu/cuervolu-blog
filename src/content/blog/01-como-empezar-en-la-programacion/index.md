@@ -2,6 +2,7 @@
 title: "Como Empezar en La Programación"
 description: "Unos cuantos tips sobre como empezar en el área"
 date: "2024-04-18"
+cover: "./wallhaven-83q7ek.png"
 ---
 
 ---
